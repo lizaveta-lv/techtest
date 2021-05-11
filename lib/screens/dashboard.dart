@@ -1,3 +1,4 @@
+import 'package:app_test/screens/webview.dart';
 import 'package:flutter/material.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
@@ -51,13 +52,33 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   'Loading...',
                 )
               else ...[
-                Text(
-                  'Hello 👋🏾',
-                  style: Theme.of(context).textTheme.headline2,
+                Row(
+                  children: [
+                    Image.asset('assets/unkuser.png'),
+                    Text("User: " + _user.username)
+                  ],
                 ),
-                Text(_user.username),
-                SizedBox(height: 10),
-                Text(_user.userId),
+                Row(
+                  children: [
+                    TextButton(
+                      child: Text("Edit picture")
+                    )
+                  ],
+                ),
+                Spacer(),
+                Center(
+                  child:
+                    TextButton(
+                      child: Text("Explore Profiles"),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => WebviewScreen()),
+                        );
+                      },
+                    )
+                ),
+                Spacer()
               ],
             ],
           ),

@@ -1,3 +1,4 @@
+import 'package:amplify_flutter/amplify.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/login.dart';
@@ -8,6 +9,15 @@ class EntryScreen extends StatefulWidget {
 }
 
 class _EntryScreenState extends State<EntryScreen> {
+  void SignOutOnEntry() {
+    Amplify.Auth.signOut();
+  }
+
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => SignOutOnEntry());
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
